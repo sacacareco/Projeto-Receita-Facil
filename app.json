@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Receita Fácil",
+    "slug": "receita-facil",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.example.receitafacil"
+    },
+    "plugins": [
+      "expo-status-bar"
+    ]
+  }
+}

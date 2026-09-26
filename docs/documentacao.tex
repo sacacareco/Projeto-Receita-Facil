@@ -1,0 +1,263 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\title{Projeto 04: Receita Fácil\\Aplicativo de Receitas Culinárias}
+\author{Nome do Aluno -- Matrícula: XXXX}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Levantamento de Requisitos}
+
+O Receita Fácil é um aplicativo mobile destinado a usuários que desejam buscar receitas culinárias, consultar ingredientes e visualizar o modo de preparo de pratos.
+
+A técnica considerada para o levantamento inicial foi a observação de necessidades comuns de usuários que procuram receitas pelo celular.
+
+\subsection{Requisitos Funcionais}
+
+\begin{longtable}{p{2cm}p{10cm}}
+\toprule
+Código & Descrição\\
+\midrule
+RF-01 & O sistema deve permitir buscar receitas pelo nome.\\
+RF-02 & O sistema deve apresentar imagem e nome das receitas.\\
+RF-03 & O sistema deve apresentar os ingredientes da receita.\\
+RF-04 & O sistema deve apresentar o modo de preparo.\\
+RF-05 & O sistema deve permitir favoritar receitas.\\
+RF-06 & O sistema deve armazenar os favoritos no dispositivo.\\
+RF-07 & O sistema deve apresentar mensagens de erro quando a API não estiver disponível.\\
+\bottomrule
+\end{longtable}
+
+\subsection{Requisitos Não Funcionais}
+
+\begin{itemize}
+\item RNF-01: O aplicativo deve ser desenvolvido em React Native.
+\item RNF-02: O aplicativo deve consumir uma API externa.
+\item RNF-03: A interface deve ser simples e responsiva.
+\item RNF-04: O sistema deve apresentar feedback de carregamento.
+\item RNF-05: O aplicativo deve permitir execução em ambiente Android.
+\end{itemize}
+
+\section{Regras de Negócio}
+
+\begin{longtable}{p{2cm}p{8cm}p{2cm}}
+\toprule
+Código & Descrição & Prioridade\\
+\midrule
+RN-01 & O usuário deve informar um termo para realizar a busca. & Alta\\
+RN-02 & Quando não houver resultados, o sistema deve apresentar uma mensagem. & Alta\\
+RN-03 & Uma receita pode ser adicionada ou removida dos favoritos. & Alta\\
+RN-04 & Os favoritos devem permanecer salvos no dispositivo. & Média\\
+RN-05 & O sistema deve informar o usuário quando ocorrer falha na API. & Alta\\
+\bottomrule
+\end{longtable}
+
+\section{UML e Modelagem}
+
+\subsection{Diagrama de Caso de Uso}
+
+Os principais casos de uso são:
+
+\begin{itemize}
+\item Buscar receita;
+\item Visualizar detalhes;
+\item Consultar ingredientes;
+\item Consultar modo de preparo;
+\item Favoritar receita;
+\item Consultar favoritos.
+\end{itemize}
+
+\subsection{Diagrama de Classes Simplificado}
+
+As principais entidades e módulos são:
+
+\begin{itemize}
+\item Usuário: interage com o aplicativo.
+\item Receita: contém nome, imagem, categoria, ingredientes e instruções.
+\item API: fornece os dados das receitas.
+\item Favoritos: realiza a persistência local usando AsyncStorage.
+\end{itemize}
+
+\subsection{Diagrama de Sequência Descritivo}
+
+\begin{enumerate}
+\item O usuário informa um termo de busca.
+\item O aplicativo envia uma requisição HTTP para a TheMealDB.
+\item A API retorna uma lista de receitas.
+\item O aplicativo apresenta os resultados em cards.
+\item O usuário seleciona uma receita.
+\item O aplicativo consulta os detalhes e apresenta as informações.
+\end{enumerate}
+
+\subsection{Diagrama de Atividades Descritivo}
+
+\begin{enumerate}
+\item Início.
+\item Informar termo de busca.
+\item Validar termo.
+\item Consultar API.
+\item Verificar resultado.
+\item Exibir receitas ou mensagem de erro.
+\item Finalizar.
+\end{enumerate}
+
+\section{Papéis e Responsabilidades}
+
+Em um projeto individual, o aluno acumula os papéis de Product Owner, desenvolvedor mobile, UX/UI Designer, arquiteto, QA e gerente de projeto.
+
+\begin{longtable}{p{4cm}p{8cm}}
+\toprule
+Papel & Responsabilidade\\
+\midrule
+Product Owner & Definir e priorizar os requisitos.\\
+Desenvolvedor Mobile & Implementar telas, navegação e integração com a API.\\
+UX/UI Designer & Definir uma interface simples e acessível.\\
+Arquiteto de Software & Definir tecnologias e organização do projeto.\\
+QA/Tester & Executar testes funcionais e de usabilidade.\\
+Gerente de Projeto & Organizar cronograma e entregas.\\
+\bottomrule
+\end{longtable}
+
+\section{Cronograma}
+
+\begin{longtable}{p{2cm}p{5cm}p{5cm}}
+\toprule
+Semanas & Fase & Entregáveis\\
+\midrule
+1--2 & Planejamento & Requisitos, UML inicial e cronograma.\\
+3--4 & Design & Wireframes e escolha da API.\\
+5--8 & Desenvolvimento 1 & Telas, navegação e integração.\\
+9--11 & Desenvolvimento 2 & Favoritos, persistência e ajustes.\\
+12--13 & Testes & Testes funcionais e avaliação heurística.\\
+14 & Build & Geração e teste da APK.\\
+15 & Documentação & Revisão do documento e diagramas.\\
+16 & Apresentação & Demonstração do aplicativo.\\
+\bottomrule
+\end{longtable}
+
+\section{Aplicabilidade}
+
+O público-alvo é composto por pessoas que desejam encontrar receitas culinárias de maneira rápida por meio de um dispositivo móvel.
+
+O problema abordado é a dificuldade de localizar receitas e consultar seus ingredientes e instruções em um único local.
+
+A solução é viável porque utiliza uma API pública, bibliotecas consolidadas e armazenamento local para os favoritos.
+
+\section{Arquitetura e Tecnologias}
+
+A aplicação utiliza uma arquitetura simples baseada em componentes e telas.
+
+\begin{itemize}
+\item React Native e Expo;
+\item Axios para requisições HTTP;
+\item TheMealDB como API externa;
+\item React Navigation para navegação;
+\item FlatList para listagem;
+\item AsyncStorage para favoritos.
+\end{itemize}
+
+A organização de pastas é:
+
+\begin{verbatim}
+src/
+  screens/
+  services/
+  storage/
+App.js
+\end{verbatim}
+
+\section{Integração com API}
+
+A API utilizada é a TheMealDB.
+
+\begin{longtable}{p{4cm}p{2cm}p{6cm}}
+\toprule
+Endpoint & Método & Finalidade\\
+\midrule
+/search.php?s=termo & GET & Buscar receitas por nome.\\
+/lookup.php?i=id & GET & Consultar detalhes de uma receita.\\
+/filter.php?i=ingrediente & GET & Buscar receitas por ingrediente.\\
+/filter.php?c=categoria & GET & Filtrar receitas por categoria.\\
+\bottomrule
+\end{longtable}
+
+O aplicativo utiliza Axios com async/await e apresenta uma mensagem amigável quando ocorre falha de comunicação ou ausência de resultados.
+
+\section{Usabilidade e UX}
+
+Foram consideradas as seguintes heurísticas de Nielsen:
+
+\begin{longtable}{p{3cm}p{7cm}p{3cm}}
+\toprule
+Heurística & Aplicação & Evidência\\
+\midrule
+Visibilidade do status & Indicador de carregamento durante a busca. & Print da tela\\
+Correspondência com o mundo real & Uso de nomes, imagens e ingredientes de receitas. & Print da tela\\
+Controle do usuário & Permissão para favoritar e remover favoritos. & Print da tela\\
+Consistência e padrões & Botões e cards com padrão visual semelhante. & Print da tela\\
+Prevenção de erros & Validação de busca vazia e mensagens de erro. & Print da tela\\
+Reconhecimento & Exibição visual das receitas em cards. & Print da tela\\
+Estética minimalista & Interface com poucos elementos e navegação direta. & Print da tela\\
+\bottomrule
+\end{longtable}
+
+As capturas de tela devem ser inseridas após a execução real do aplicativo.
+
+\section{Build e Deploy da APK}
+
+A geração da APK deve ser feita no ambiente Android configurado para o projeto.
+
+Procedimento geral:
+
+\begin{enumerate}
+\item Instalar as dependências com \texttt{npm install}.
+\item Executar o projeto e verificar as telas.
+\item Configurar o ambiente de build Android.
+\item Gerar a APK de release conforme as orientações da disciplina.
+\item Instalar a APK em dispositivo físico ou emulador.
+\item Registrar capturas de tela da instalação e execução.
+\item Inserir o arquivo APK na pasta \texttt{/release}.
+\end{enumerate}
+
+O comando indicado no documento da disciplina é:
+
+\begin{verbatim}
+cd android
+./gradlew clean
+./gradlew assembleRelease
+\end{verbatim}
+
+O comando deve ser utilizado quando o projeto estiver configurado com a estrutura Android necessária para o build de release.
+
+\section{Conclusão e Lições Aprendidas}
+
+O projeto Receita Fácil apresenta uma solução simples para consulta de receitas culinárias. A implementação utiliza React Native, integração com uma API externa e armazenamento local para favoritos.
+
+Durante o desenvolvimento, os principais aprendizados envolvem consumo de APIs, organização de componentes, navegação entre telas, persistência de dados e aplicação de princípios de usabilidade.
+
+Como melhorias futuras, podem ser adicionados filtros mais completos, geração automática de lista de compras, autenticação de usuários e sincronização dos favoritos em nuvem.
+
+\section{Referências}
+
+\begin{itemize}
+\item TheMealDB. Disponível em: \url{https://www.themealdb.com/api.php}.
+\item React Native. Documentação oficial. Disponível em: \url{https://reactnative.dev/}.
+\item React Navigation. Documentação oficial. Disponível em: \url{https://reactnavigation.org/}.
+\item Nielsen Norman Group. 10 Usability Heuristics for User Interface Design.
+\end{itemize}
+
+\end{document}
